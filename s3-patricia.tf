@@ -1,8 +1,11 @@
 resource "aws_s3_bucket" "ziyo_bucket" {
   bucket = "ziyotek-2023-first-homework-bucket-pb"
 
-   object_lock_enabled = true
-   force_destroy = true
+  force_destroy = true
+  
+  object_lock_configuration = {
+   object_lock_enabled = "Enabled"
+  }
    
    tags = {
     Name        = "homework-patricia"
