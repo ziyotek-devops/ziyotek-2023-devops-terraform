@@ -2,20 +2,18 @@ resource "aws_s3_bucket" "ziyo_bucket" {
   bucket = "ziyotek-2023-first-homework-bucket-pb"
 
   force_destroy = true
-  
-  object_lock_configuration = {
-   object_lock_enabled = "Enabled"
-  }
-   
+  object_lock_enabled = true
+
    tags = {
-    Name        = "homework-patricia"
+    Name        = "Patricia"
     Environment = "ziyo"
   }
-}
-  module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+} 
+    resource "aws_vpc" "ziyo_vpc" {
+ cidr_block = "10.0.0.0/16"
 
-  name = "my-vpc"
-  cidr = "10.0.0.0/16"
-}
+ tags = {
+   Name = "Patricia VPC"
+ }
+  }
 
