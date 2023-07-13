@@ -37,7 +37,6 @@ resource "aws_vpc" "main" { ###This is the VPC with 3 subnets in different zones
   }
 }
 
-
 variable "public_subnet_cidrs" {
   type        = list(string)
   description = "Public Subnet CIDR values"
