@@ -1,5 +1,5 @@
 resource "aws_instance" "ziyote_ec2_first" {
-  ami           = "ami-06b09bfacae1453cb" #works ONLY in us-east-1
+  ami           = var.ami_id # #works ONLY in us-east-1
   instance_type = "t3.micro" #t2.micro does not support ebs opt/monitoring
 
   subnet_id = aws_subnet.public_subnet_1.id
