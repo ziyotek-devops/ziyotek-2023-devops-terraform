@@ -3,7 +3,7 @@ resource "aws_instance" "ziyote_ec2_first" {
   instance_type = "t3.micro" #t2.micro does not support ebs opt/monitoring
 
   subnet_id = aws_subnet.public_subnet_1.id
-  key_name  = "radostinpaskalev_key"
+  key_name  = "Demokey"
   # we will be using the heredoc syntax
   vpc_security_group_ids = [
     aws_security_group.ziyo_allow_https.id
