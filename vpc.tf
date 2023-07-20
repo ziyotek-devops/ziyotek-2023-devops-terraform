@@ -6,6 +6,7 @@ resource "aws_vpc" "ziyo_vpc" {
   }
 }
 
+
 resource "aws_subnet" "public_subnet_1" {
   vpc_id            = aws_vpc.ziyo_vpc.id
   cidr_block        = "10.10.1.0/24"
