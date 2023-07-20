@@ -1,14 +1,17 @@
-resource "aws_instance" "ziyote_ec2_first" {
-  ami           = "ami-06b09bfacae1453cb" #works ONLY in us-east-1
-  instance_type = "t3.micro" #t2.micro does not support ebs opt/monitoring
+resource "aws_instance" "ziyote_ec2_first-tf" {
+  ami = var.ami_id
+  #"ami-06b09bfacae1453cb" #works ONLY in us-east-1
+  instance_type = var.instance_type
+  #"t3.micro" #t2.micro does not support ebs opt/monitoring
 
   subnet_id = aws_subnet.public_subnet_1.id
-  key_name  = "radostinpaskalev_key"
+  key_name  = var.key_name
+  #"testAWS"
   # we will be using the heredoc syntax
   vpc_security_group_ids = [
     aws_security_group.ziyo_allow_https.id
-    ]
-  
+  ]
+
   # user_data                   = <<EOF
   # #!/bin/bash
   # sudo yum update -y
@@ -22,7 +25,7 @@ resource "aws_instance" "ziyote_ec2_first" {
   ebs_optimized               = true
   monitoring                  = true
   tags = {
-    Name = "Ziyo_first_instance"
+    Name = "Ziyo_first_instance-tf"
   }
 }
 
