@@ -1,80 +1,66 @@
 resource "aws_vpc" "ziyo_vpc" {
-  cidr_block = "10.10.0.0/16"
+  cidr_block = var.vpc_cidr
 
-  tags = {
-    Name = "Ziyo_2023_VPC"
-  }
+  tags = var.general_tag
+
 }
 
 resource "aws_subnet" "public_subnet_1" {
   vpc_id            = aws_vpc.ziyo_vpc.id
-  cidr_block        = "10.10.1.0/24"
+  cidr_block        = var.subnet_1_cidr_pub
   availability_zone = "us-east-1a"
-  tags = {
-    Name = "public_subnet_1"
-  }
+  tags              = var.general_tag
 }
 
 resource "aws_subnet" "public_subnet_2" {
   vpc_id            = aws_vpc.ziyo_vpc.id
-  cidr_block        = "10.10.2.0/24"
+  cidr_block        = var.subnet_2_cidr_pub
   availability_zone = "us-east-1b"
 
-  tags = {
-    Name = "public_subnet_2"
-  }
+  tags = var.general_tag
 }
 
 resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.ziyo_vpc.id
-  cidr_block        = "10.10.3.0/24"
+  cidr_block        = var.subnet_1_cidr_pri
   availability_zone = "us-east-1a"
-  tags = {
-    Name = "private_subnet_1"
-  }
+  tags              = var.general_tag
 }
 
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.ziyo_vpc.id
-  cidr_block        = "10.10.4.0/24"
+  cidr_block        = var.subnet_2_cidr_pri
   availability_zone = "us-east-1b"
-  tags = {
-    Name = "private_subnet_2"
-  }
+  tags              = var.general_tag
 }
 
 resource "aws_internet_gateway" "ziyo_igw" {
   vpc_id = aws_vpc.ziyo_vpc.id
 
-  tags = {
-    Name = "ziyo_internet_gateway"
-  }
+  tags = var.general_tag
 }
 
 resource "aws_route_table" "ziyo_route_table" {
   vpc_id = aws_vpc.ziyo_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.route_cider
     gateway_id = aws_internet_gateway.ziyo_igw.id
   }
 
-  tags = {
-    Name = "ziyo_route_table"
-  }
+  tags = var.general_tag
 }
 
 resource "aws_route_table" "ziyo_route_table_2" {
   vpc_id = aws_vpc.ziyo_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.route_cider
     gateway_id = aws_internet_gateway.ziyo_igw.id
   }
 
-  tags = {
-    Name = "ziyo_route_table_2"
-  }
+  tags = var.general_tag
+
 }
 
 resource "aws_route_table_association" "ziyo_route_assoc" {
