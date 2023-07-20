@@ -1,22 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
-}
-
-terraform {
-  required_version = "~> 1.2.2"
-
-  # required_providers {
-  #   aws = {
-  #     source  = "hashicorp/aws"
-  #     version = "~> 5.4"
-  #   }
-  # }
-
-  # backend "s3" {
-  #   bucket  = "ziyotek-terraform-state-rady-host"
-  #   key     = "ec2-examle/devops/terraform.tfstate"
-  #   region  = "us-east-1"
-  #   encrypt = true
-  #   dynamodb_table = "terraform-lock"
-  # }
+  region     = "us-east-1"
+  access_key = "AKIAYOPUA4JFXYWEGHK7"
+  secret_key = "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"
 }
