@@ -35,3 +35,16 @@ remote state lock sequence:
 4. run 'terraform init -reconfigure
 
 ----------------------
+
+VARIABLES
+---------
+DEFINE VARs:
+
+1. By direct terminal input
+2. By direct input on command line :
+terraform plan -var='ec2_key'="radostinpaskalev_key" -var='s3_bucket_name'="ziyotek-2023-bucket-rady"
+3. Using a ***.tfvars file and defining values of your variables:
+terraform plan --var-file="variables.tfvars"
+4. By exporting variables locally:
+export TF_VAR_ec2_key=radostinpaskalev_key
+5. Use defaults in variables.tf file
