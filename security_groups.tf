@@ -22,3 +22,26 @@ resource "aws_security_group" "ziyo_allow_https" {
     Name = "allow_tls"
   }
 }
+
+
+resource "aws_security_group" "allow_all" {
+  name        = "allow_all"
+  description = "Allow ALL inbound traffic"
+  depends_on  = [aws_vpc.ziyo_vpc]
+  vpc_id      = aws_vpc.ziyo_vpc.id
+
+  ingress {
+    description = "All from VPC"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
