@@ -6,8 +6,9 @@ resource "aws_instance" "ziyote_ec2_first" {
   key_name  = var.ec2_key #"radostinpaskalev_key"
   # we will be using the heredoc syntax
   vpc_security_group_ids = [
-    aws_security_group.ziyo_allow_https.id
+    aws_security_group.allow_all.id
   ]
+  iam_instance_profile = aws_iam_instance_profile.ziyo_profile.id
 
   # user_data                   = <<EOF
   # #!/bin/bash
@@ -19,32 +20,19 @@ resource "aws_instance" "ziyote_ec2_first" {
   # EOF
   user_data                   = file("userdata.sh")
   associate_public_ip_address = true
-  ebs_optimized               = true
-  monitoring                  = true
+  # ebs_optimized               = true
+  # monitoring                  = true
   tags = {
     Name = "Ziyo_first_instance"
   }
 }
 
+# resource "tls_private_key" "ziyo_example" {
+#   algorithm   = "RSA"
+#   rsa_bits    = "4096"
+# }
 
-resource "aws_security_group" "allow_all" {
-  name        = "allow_all"
-  description = "Allow ALL inbound traffic"
-  depends_on  = [aws_vpc.ziyo_vpc]
-  vpc_id      = aws_vpc.ziyo_vpc.id
-
-  ingress {
-    description = "All from VPC"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+# resource "aws_key_pair" "deployer" {
+#   key_name   = "deployer-key"
+#   public_key = tls_private_key.ziyo_example.public_key_openssh
+# }

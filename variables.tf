@@ -6,7 +6,7 @@ variable "ec2_key" {
 
 variable "s3_bucket_name" {
   type    = string
-  default = "ziyotek-2023-bucket-rady"
+  default = "ziyotek-2023-bucket-rady-class"
 }
 
 variable "cidr_ips" {
@@ -58,3 +58,12 @@ variable "route_cider" {
   type    = string
   default = "0.0.0.0/0"
 }
+
+variable "admin_user" {
+  default = "admin_user"
+}
+
+variable "db_password" {
+  default = "Password1"
+}
+
