@@ -63,7 +63,6 @@ variable "admin_user" {
   default = "admin_user"
 }
 
-variable "db_password" {
-  default = "Password1"
+variable "bucket_prefix" {
+   default = "home-depo"
 }
-

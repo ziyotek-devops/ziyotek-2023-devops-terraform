@@ -3,11 +3,11 @@ resource "aws_db_instance" "ziyo_db" {
   allocated_storage    = 10
   db_name              = "ziyo_db"
   port                 = "3306"
-  engine               = "mysql"
-  engine_version       = "5.7"
+  engine               = "postgres"
+  engine_version       = "13.9"
   instance_class       = "db.t3.micro"
   username             = var.admin_user
-  password             = var.db_password 
+  password             = aws_ssm_parameter.ziyo_ssm.value
 #   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
 #   availability_zone = "us-east-1"
@@ -22,3 +22,22 @@ resource "aws_db_subnet_group" "ziyo_subnet" {
   name       = "ziyo_sub_gr"
   subnet_ids = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
 }
+
+resource "random_password" "ziyo_db_password" {
+  length = 16
+  special = true
+  override_special = "_%@"
+}
+
+resource "aws_ssm_parameter" "ziyo_ssm" {
+  name  = "/ziyotek/database/password"
+  type  = "SecureString"
+  value = random_password.ziyo_db_password.result
+  key_id = aws_kms_key.a.key_id
+}
+
+resource "aws_kms_key" "a" {
+  description             = "KMS key for ziyo 2023"
+  deletion_window_in_days = 7
+}
+
