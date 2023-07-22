@@ -7,14 +7,14 @@ resource "aws_vpc" "ziyo_vpc" {
 resource "aws_subnet" "public_subnet_1" {
   vpc_id            = aws_vpc.ziyo_vpc.id
   cidr_block        = var.subnet_1_cidr_pub
-  # availability_zone = "us-east-1a"
+  availability_zone = "us-east-1a"
   tags              = var.general_tag
 }
 
 resource "aws_subnet" "public_subnet_2" {
   vpc_id            = aws_vpc.ziyo_vpc.id
   cidr_block        = var.subnet_2_cidr_pub
-  # availability_zone = "us-east-1b"
+  availability_zone = "us-east-1b"
 
   tags = var.general_tag
 }
@@ -22,14 +22,14 @@ resource "aws_subnet" "public_subnet_2" {
 resource "aws_subnet" "private_subnet_1" {
   vpc_id            = aws_vpc.ziyo_vpc.id
   cidr_block        = var.subnet_1_cidr_pri
-  availability_zone = "us-east-1a"
+  # availability_zone = "us-east-1a"
   tags              = var.general_tag
 }
 
 resource "aws_subnet" "private_subnet_2" {
   vpc_id            = aws_vpc.ziyo_vpc.id
   cidr_block        = var.subnet_2_cidr_pri
-  availability_zone = "us-east-1b"
+  # availability_zone = "us-east-1b"
   tags              = var.general_tag
 }
 

@@ -13,8 +13,7 @@ policy = <<EOF
       ],
       "Effect": "Allow",
       "Resource": [
-          "${aws_s3_bucket.ziyo_bucket_gov.arn}",
-          "${aws_s3_bucket.ziyo_bucket_gov.arn}/*"
+          "*"
       ]
     }
   ]
