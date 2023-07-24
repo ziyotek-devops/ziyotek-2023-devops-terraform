@@ -40,4 +40,3 @@ resource "aws_kms_key" "a" {
   description             = "KMS key for ziyo 2023"
   deletion_window_in_days = 7
 }
-
