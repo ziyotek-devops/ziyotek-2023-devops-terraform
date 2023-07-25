@@ -31,3 +31,8 @@ variable "instance_type" {
   default = "t3.micro"
   type    = string
 } 
+
+variable  "username" {
+  type = string 
+  default = "admin_user"
+}
