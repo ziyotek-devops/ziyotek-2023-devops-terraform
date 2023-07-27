@@ -1,3 +1,4 @@
+
 output "rds_az" {
   value = aws_db_instance.ziyo_db.availability_zone
 }
