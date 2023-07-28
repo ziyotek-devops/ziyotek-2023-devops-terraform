@@ -30,7 +30,7 @@ variable "general_tag" {
 }
 
 variable "vpc_cidr" {
-  type  = string
+  type    = string
   default = "10.10.0.0/16"
 }
 
@@ -64,5 +64,5 @@ variable "admin_user" {
 }
 
 variable "bucket_prefix" {
-   default = "home-depo"
+  default = "home-depo"
 }

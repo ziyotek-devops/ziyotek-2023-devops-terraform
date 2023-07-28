@@ -1,6 +1,6 @@
 data "aws_ami" "example" {
-  most_recent      = true
-  owners           = ["amazon"]
+  most_recent = true
+  owners      = ["amazon"]
 
   filter {
     name   = "name"
@@ -9,5 +9,5 @@ data "aws_ami" "example" {
 }
 
 output "ami_used" {
-    value = data.aws_ami.example.id
+  value = data.aws_ami.example.id
 }

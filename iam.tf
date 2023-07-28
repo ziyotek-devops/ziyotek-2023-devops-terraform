@@ -1,9 +1,9 @@
 resource "aws_iam_policy" "ziyo_policy" {
-  name        = "s3_access_policy"
+  name        = "${local.s3_prefix}_s3_access_policy"
   path        = "/"
   description = "My ziyo 2023 test policy"
 
-policy = <<EOF
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -45,7 +45,7 @@ EOF
 }
 
 resource "aws_iam_policy_attachment" "ziyo_attach" {
-   name       = "ziyo-test-attachment"
+  name       = "ziyo-test-attachment"
   roles      = [aws_iam_role.ziyo_role.name]
   policy_arn = aws_iam_policy.ziyo_policy.arn
 }
