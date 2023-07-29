@@ -1,11 +1,11 @@
-provider "aws" {
-  region = "us-east-1"
-  default_tags {
-    tags = {
-      Environment = "SBX"
-      }
-    }
-}
+# provider "aws" {
+#   region = "us-east-1"
+#   default_tags {
+#     tags = {
+#       Environment = "SBX"
+#       }
+#     }
+# }
 
 # terraform {
 #   required_version = "~> 1.2.2"
