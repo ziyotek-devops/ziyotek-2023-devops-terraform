@@ -7,7 +7,7 @@ resource "aws_instance" "ziyote_ec2_first" {
   # we will be using the heredoc syntax
   vpc_security_group_ids = var.ec2_security_groups
 
-  #iam_instance_profile = aws_iam_instance_profile.ziyo_profile.id
+  iam_instance_profile = var.ec2_iam_instance_profile
 
 	# user_data = <<EOF
 	# 	#!/bin/sh

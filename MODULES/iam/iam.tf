@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "ziyo_policy" {
-  name        = "${local.s3_prefix}_s3_access_policy"
+  name        = "${var.environment}_s3_access_policy"
   path        = "/"
   description = "My ziyo 2023 test policy"
 
@@ -22,7 +22,7 @@ EOF
 }
 
 resource "aws_iam_role" "ziyo_role" {
-  name = "s3_test_role"
+  name = "${var.environment}_s3_test_role"
 
   assume_role_policy = <<EOF
 {
@@ -40,17 +40,17 @@ resource "aws_iam_role" "ziyo_role" {
 }
 EOF
   tags = {
-    name = "web-tier-s3-access"
+    Environment = var.environment
   }
 }
 
 resource "aws_iam_policy_attachment" "ziyo_attach" {
-  name       = "ziyo-test-attachment"
+  name       = "${var.environment}-ziyo-test-attachment"
   roles      = [aws_iam_role.ziyo_role.name]
   policy_arn = aws_iam_policy.ziyo_policy.arn
 }
 
 resource "aws_iam_instance_profile" "ziyo_profile" {
-  name = "ziyo_2023_ec2_profile"
+  name = "${var.environment}-ziyo_2023_ec2_profile"
   role = aws_iam_role.ziyo_role.name
 }

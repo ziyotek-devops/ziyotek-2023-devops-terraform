@@ -18,3 +18,7 @@ variable "ec2_security_groups" {
     default = []
     type = list
 }
+
+variable "ec2_iam_instance_profile" {
+    default = null
+}

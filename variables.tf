@@ -29,9 +29,7 @@ variable "general_tag" {
   }
 }
 
-variable "admin_user" {
-  default = "admin_user"
-}
+
 
 variable "bucket_prefix" {
   default = "home-depo"
