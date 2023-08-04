@@ -4,7 +4,7 @@ locals {
 }
 
 resource "aws_s3_bucket" "ziyo_bucket_gov" {
-  count = var.environmnet == "sbx" ? 1 : 0
+  count = var.environment == "sbx" ? 1 : 0
   bucket              = "${local.s3_prefix}-ziyotek-2023-spring-class-devops"
   force_destroy       = true
   tags                = {
