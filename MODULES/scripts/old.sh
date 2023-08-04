@@ -4,3 +4,12 @@ sudo yum install httpd -y
 sudo systemctl start httpd
 sudo systemctl enable httpd
 sudo echo "</h1> At $(hostname -f) </h1>" > /var/www/html/index.html
+
+R=rady
+
+if $R == 1
+then
+echo "hello"
+else
+echo "bye"
+done
